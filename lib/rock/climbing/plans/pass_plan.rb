@@ -5,6 +5,10 @@ class PassPlan
         @start_date = start_date
     end
 
+    def gym_name
+        raise NotImplementedError
+    end
+
     def price
         raise NotImplementedError
     end
@@ -19,7 +23,7 @@ class PassPlan
 
     def session_covered?(climbing_session)
         date = climbing_session.date
-        is_after_start_date?(date) && is_before_end_date?(date)
+        is_after_start_date?(date) && is_before_end_date?(date) && gym_name == climbing_session.gym_name
     end
 
     private
