@@ -1,5 +1,6 @@
 require 'rock/climbing/calculator/average_climb_calculator'
 require 'rock/climbing/calculator/cost_per_climb_calculator'
+require 'rock/climbing/calculator/highest_sent_climb_calculator'
 
 class Reporter
     attr_reader :climbing_sessions, :pass_plan
@@ -9,7 +10,8 @@ class Reporter
         @pass_plan = pass_plan
         @reporters = [
             CostPerClimbCalculator.new(climbing_sessions, pass_plan),
-            AverageClimbCalculator.new(climbing_sessions)
+            AverageClimbCalculator.new(climbing_sessions),
+            HighestSentClimbCalculator.new(climbing_sessions),
         ]
     end
 
