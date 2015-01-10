@@ -1,4 +1,5 @@
 require 'CSV'
+require 'Time'
 
 # Parse something like
 #  Date,Climbs,,,,,,,
@@ -11,10 +12,8 @@ require 'CSV'
 # 2015-01-06,5.6+ sent,5.7 sent ,5.7+ sent ,5.8-,5.7+,5.8,5.8- (90%),5.6 x 2.7
 
 class SimpleCsvDeserializer
-  def self.deserialize(file)
+  def self.deserialize(file_contents)
     climbing_sessions = []
-
-    file_contents = File.read(file)
 
     climbing_sessions_raw = CSV.new(file_contents).to_a[1..-1]
     climbing_sessions_raw.each do |raw_climbing_session|
