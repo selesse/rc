@@ -5,14 +5,19 @@ require 'rock/climbing/calculator/highest_sent_climb_calculator'
 class Reporter
     attr_reader :climbing_sessions, :pass_plan
 
-    def initialize(climbing_sessions, pass_plan)
+    def initialize(climbing_sessions, pass_plan = nil)
         @climbing_sessions = climbing_sessions
         @pass_plan = pass_plan
-        @reporters = [
-            CostPerClimbCalculator.new(climbing_sessions, pass_plan),
-            AverageClimbCalculator.new(climbing_sessions),
-            HighestSentClimbCalculator.new(climbing_sessions),
-        ]
+        @reporters = basic_reporters
+        @reporters += plan_reporters unless pass_plan.nil?
+    end
+
+    def plan_reporters
+        [CostPerClimbCalculator.new(@climbing_sessions, @pass_plan)]
+    end
+
+    def basic_reporters
+        [AverageClimbCalculator.new(@climbing_sessions), HighestSentClimbCalculator.new(@climbing_sessions)]
     end
 
     def report

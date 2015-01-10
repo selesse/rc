@@ -1,13 +1,14 @@
 class Climb
     include Comparable
-    attr_reader :rating, :percentage, :sent, :times
+    attr_reader :rating, :percentage, :sent, :times, :failed
 
     # TODO: nil stuff for initialization
     def initialize(rating, args={})
-        @rating = rating.to_s
+        @rating = rating
         @percentage = args[:percentage] || 1.0
         @times = args[:times] || 1
         @sent = args[:sent] || false
+        @failed = args[:failed] || @percentage < 1.0
     end
 
     def sent?
@@ -16,6 +17,22 @@ class Climb
 
     def <=>(another_climb)
       Climb::get_numeric_rating(rating) - Climb::get_numeric_rating(another_climb.rating)
+    end
+
+    def to_s
+      string="#{rating}"
+      if percentage != 1.0
+        string += " (#{'%2.0f' % (percentage * 100)}%)"
+      elsif failed
+        string += ' (failed)'
+      elsif sent?
+        string += ' (sent)'
+      end
+      if times > 1
+        string += " x #{times}"
+      end
+
+      string
     end
 
     def self.get_numeric_rating(climb_rating_string)

@@ -6,19 +6,8 @@ class AverageClimbCalculator
   def print_report
     @climbing_sessions.each do |session|
       climbs = session.climbs
-      climbs_human = climbs.map do |climb|
-        rating = climb.rating
-        percentage = climb.percentage
-        times = climb.times
-
-        climb_human = (100 * percentage).to_s + '% of ' + rating
-        if times > 1
-          climb_human += ' x ' + times.to_s
-        end
-        climb_human
-      end
       climb_average = AverageClimbCalculator.get_climb_average(climbs)
-      puts "Average for climb on #{session.date.strftime('%Y/%m/%d')}: #{climb_average} -- #{climbs_human.join(', ')}"
+      puts "Average for climb on #{session.date.strftime('%Y/%m/%d')}: #{climb_average} -- #{climbs.join(', ')}"
     end
   end
 

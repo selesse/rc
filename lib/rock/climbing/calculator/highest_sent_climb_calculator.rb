@@ -10,6 +10,8 @@ class HighestSentClimbCalculator
     end
 
     highest_climb = sent_climbs.max
-    puts "Highest sent climb: #{highest_climb.rating}"
+    unless highest_climb.nil?
+      puts "Highest sent climb: #{highest_climb.rating}"
+    end
   end
 end
