@@ -10,15 +10,15 @@ describe PassPlan do
         pass_plan = MonthlyPlan.new(start_date)
 
         session_too_early =
-            ClimbingSession.new(date: Time.new(2013, 12, 31))
+            ClimbingSession.new(gym_name: pass_plan.gym_name, date: Time.new(2013, 12, 31))
         session_beginning =
-            ClimbingSession.new(date: Time.new(2014, 1, 1))
+            ClimbingSession.new(gym_name: pass_plan.gym_name, date: Time.new(2014, 1, 1))
         session_middle =
-            ClimbingSession.new(date: Time.new(2014, 1, 15))
+            ClimbingSession.new(gym_name: pass_plan.gym_name, date: Time.new(2014, 1, 15))
         session_end =
-            ClimbingSession.new(date: Time.new(2014, 1, 31))
+            ClimbingSession.new(gym_name: pass_plan.gym_name, date: Time.new(2014, 1, 31))
         session_too_late =
-            ClimbingSession.new(date: Time.new(2014, 2, 1))
+            ClimbingSession.new(gym_name: pass_plan.gym_name, date: Time.new(2014, 2, 1))
 
         expect(pass_plan.session_covered?(session_beginning)).to eq(true)
         expect(pass_plan.session_covered?(session_middle)).to eq(true)
