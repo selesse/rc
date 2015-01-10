@@ -1,5 +1,5 @@
-require 'CSV'
-require 'Time'
+require 'csv'
+require 'time'
 
 # Parse something like
 #  Date,Climbs,,,,,,,
