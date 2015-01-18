@@ -1,5 +1,6 @@
 require 'rock/climbing/calculator/average_climb_calculator'
 require 'rock/climbing/calculator/cost_per_climb_calculator'
+require 'rock/climbing/calculator/highest_climb_calculator'
 require 'rock/climbing/calculator/highest_sent_climb_calculator'
 
 class Reporter
@@ -17,7 +18,11 @@ class Reporter
     end
 
     def basic_reporters
-        [AverageClimbCalculator.new(@climbing_sessions), HighestSentClimbCalculator.new(@climbing_sessions)]
+        [
+            AverageClimbCalculator.new(@climbing_sessions),
+            HighestSentClimbCalculator.new(@climbing_sessions),
+            HighestClimbCalculator.new(@climbing_sessions),
+        ]
     end
 
     def report
