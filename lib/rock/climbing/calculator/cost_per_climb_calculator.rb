@@ -16,7 +16,7 @@ class CostPerClimbCalculator
     end
 
     def print_report
-      puts "Your plan cost #{@pass_plan.price}"
+      puts "Your plan cost $#{@pass_plan.price}"
       puts "You have climbed #{@climbing_sessions.size} different times, #{climbs_covered} of which were covered by your plan"
       climbs_not_covered = @climbing_sessions.size - climbs_covered
       puts "With your plan, it has cost you $#{cost_per_climb.round(2)} per climb"
