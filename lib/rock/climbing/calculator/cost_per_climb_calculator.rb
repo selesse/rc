@@ -1,18 +1,8 @@
-class CostPerClimbCalculator
-    def initialize(climbing_sessions, pass_plan)
-      @climbing_sessions = climbing_sessions
-      @pass_plan = pass_plan
-    end
+require_relative 'pass_plan_calculator'
 
+class CostPerClimbCalculator < PassPlanCalculator
     def cost_per_climb
       @pass_plan.price / climbs_covered
-    end
-
-    def climbs_covered
-      sessions_covered_by_plan = @climbing_sessions.select { |session|
-        @pass_plan.session_covered?(session)
-      }
-      sessions_covered_by_plan.size
     end
 
     def print_report
