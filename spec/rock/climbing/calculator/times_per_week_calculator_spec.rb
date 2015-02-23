@@ -23,5 +23,15 @@ describe TimesPerWeekCalculator do
       times_per_week_calculator = TimesPerWeekCalculator.new(climbing_sessions, @yearly_plan)
       expect(times_per_week_calculator.times_per_week).to eq(2.0)
     end
+
+    it 'should report two climbs per week if there have been 3 sessions and 1 was before the plan started' do
+      climbing_sessions = ClimbingSessionFixture.get(Time.now)
+      climbing_sessions += ClimbingSessionFixture.get((DateTime.now - 6).to_time)
+      climbing_sessions += ClimbingSessionFixture.get((DateTime.now - 8).to_time)
+
+      times_per_week_calculator = TimesPerWeekCalculator.new(climbing_sessions, @yearly_plan)
+      expect(times_per_week_calculator.times_per_week).to eq(2.0)
+    end
+
   end
 end
