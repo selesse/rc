@@ -9,16 +9,16 @@ describe TimesPerWeekCalculator do
       @yearly_plan = PassPlanFixture.get_yearly_plan(one_week_ago)
     end
 
-    it 'should report one climb per week if there has been one session in one week' do
+    it 'should report one climb per week if there has been one session' do
       climbing_sessions = ClimbingSessionFixture.get(Time.now)
 
       times_per_week_calculator = TimesPerWeekCalculator.new(climbing_sessions, @yearly_plan)
       expect(times_per_week_calculator.times_per_week).to eq(1.0)
     end
 
-    it 'should report two climbs per week if there has been two sessions in one week' do
+    it 'should report two climbs per week if there has been two sessions' do
       climbing_sessions = ClimbingSessionFixture.get(Time.now)
-      climbing_sessions << ClimbingSessionFixture.get((DateTime.now - 6).to_time)
+      climbing_sessions += ClimbingSessionFixture.get((DateTime.now - 6).to_time)
 
       times_per_week_calculator = TimesPerWeekCalculator.new(climbing_sessions, @yearly_plan)
       expect(times_per_week_calculator.times_per_week).to eq(2.0)

@@ -10,10 +10,17 @@ class TimesPerWeekCalculator
 
     weeks_difference = (right_now_mjd - plan_start_mjd) / 7.0
 
-    @climbing_sessions.size / weeks_difference
+    climbing_sessions_covered / weeks_difference
+  end
+
+  def climbing_sessions_covered
+    sessions_covered_by_plan = @climbing_sessions.select { |session|
+      @pass_plan.session_covered?(session)
+    }
+    sessions_covered_by_plan.size
   end
 
   def print_report
-    puts "You've climbed #{times_per_week} times per week since #{@pass_plan.start_date.strftime("%B %-d, %Y")}"
+    puts "You've climbed #{times_per_week.round(2)} times per week since #{@pass_plan.start_date.strftime("%B %-d, %Y")}"
   end
 end
