@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'rock/climbing'
+
+script_directory = File.expand_path(File.dirname(__FILE__))
+
+climbing_sessions = SimpleCsvDeserializer::deserialize(File.read("#{script_directory}/results.csv"))
+
+pass_plan = YearlyPlan.new(Time.new(2014, 12, 28))
+
+reporter = Reporter.new(climbing_sessions, pass_plan)
+reporter.report
