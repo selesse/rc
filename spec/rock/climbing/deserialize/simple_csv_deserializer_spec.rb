@@ -7,7 +7,7 @@ describe SimpleCsvDeserializer do
     before do
       @csv_contents = <<EOS
 Gym Name,Date,Climbs,,,,,,,
-Allez Up,2014-11-04,5.5,5.7,5.8,5.8-,5.8 (F))
+Allez Up,2014-11-04,5.5,5.7,5.8,5.8-,5.10a (F))
 EOS
     end
 
@@ -28,7 +28,7 @@ EOS
       expect(climbs.size).to eq(5)
       expect(climbs.first.rating).to eq('5.5')
       expect(climbs.first.failed).to be_falsey
-      expect(climbs.last.rating).to eq('5.8')
+      expect(climbs.last.rating).to eq('5.10a')
       expect(climbs.last.failed).to be_truthy
     end
   end

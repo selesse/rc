@@ -34,7 +34,9 @@ class SimpleCsvDeserializer
   def self.create_climb(raw_climb_string)
     raw_climb_string.strip!
 
-    rating = raw_climb_string[/([0-9]\.([0-9]+ *[-+]?))/, 1]
+    # TODO: decompose this into an object that returns the prefix/postfix part?
+    # There's duplication between this regex and the one in Climb.
+    rating = raw_climb_string[/([0-9]\.([0-9]+ *[-+abcd]?))/, 1]
     rating.strip!
 
     percentage = raw_climb_string[/.* \((\d+)%\)/, 1]

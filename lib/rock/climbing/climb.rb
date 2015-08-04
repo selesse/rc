@@ -37,27 +37,35 @@ class Climb
 
     def self.get_numeric_rating(climb_rating_string)
       # i.e. 5.6, 5.6+ or 5.6 +
-      rating_regexp = /[0-9]\.([0-9]+ *([-+]?))/
+      rating_regexp = /[0-9]\.([0-9]+ *([-+abcd]?))/
 
       climbing_rating = climb_rating_string[rating_regexp, 1]
       postfix_rating = climb_rating_string[rating_regexp, 2]
 
       climbing_modifier = 0
 
-      if postfix_rating.to_s == '+'
-          climbing_modifier = 1
+      if postfix_rating.to_s == 'a'
+          climbing_modifier = -3
       elsif postfix_rating.to_s == '-'
+          climbing_modifier = -2
+      elsif postfix_rating.to_s == 'b'
           climbing_modifier = -1
+      elsif postfix_rating.to_s == 'c'
+          climbing_modifier = 1
+      elsif postfix_rating.to_s == '+'
+          climbing_modifier = 2
+      elsif postfix_rating.to_s == 'd'
+          climbing_modifier = 3
       end
 
       raise "invalid rock climbing format for #{climb_rating_string}" if climbing_rating.nil?
 
-      (climbing_rating.to_i * 3) + climbing_modifier
+      ((climbing_rating.to_i * 4) + climbing_modifier).to_i
     end
 
     def self.get_string_rating(numeric_rating)
       # TODO: Obviously, only climbs that start with "5" are valid
-      '%4.2f' % (5 + (numeric_rating / 3.0) / 10)
+      '%4.2f' % (5 + (numeric_rating / 4.0) / 10)
     end
 
 end
