@@ -24,7 +24,7 @@ class AverageClimbCalculator
 
     0 if ratings.empty?
     # Average of the array
-    average_climb_number = ratings.inject{ |sum, el| sum + el }.to_f / ratings.size
+    average_climb_number = ratings.inject { |sum, el| sum + el }.to_f / ratings.size
     Climb::get_string_rating(average_climb_number)
   end
 
