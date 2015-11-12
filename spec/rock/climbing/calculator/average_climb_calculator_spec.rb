@@ -22,6 +22,6 @@ describe AverageClimbCalculator do
   it 'should take into consideration percentage when weighing average' do
     climbs = [Climb.new('5.5'), Climb.new('5.10', percentage: 0.5)]
 
-    expect(AverageClimbCalculator.get_climb_average(climbs)).to eq('5.69')
+    expect(AverageClimbCalculator.get_climb_average(climbs)).to eq('5.50')
   end
 end
