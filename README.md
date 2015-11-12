@@ -1,5 +1,7 @@
 # Rock::Climbing
 
+[![Build status](https://travis-ci.org/selesse/rc.png)](https://travis-ci.org/selesse/rc)
+
 This is a toy project in Ruby to help calculate certain metrics associated
 with rock climbing. Feedback/advice welcome -- this is some of my first Ruby
 code.
