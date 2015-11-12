@@ -22,7 +22,7 @@ describe Climb do
     it 'should rate 5.9+ as less than 5.10a' do
       five_nine_plus_rating = Climb.get_numeric_rating('5.9+')
       five_ten_a_rating = Climb.get_numeric_rating('5.10a')
-      expect(five_nine_plus_rating).to be <= five_ten_a_rating
+      expect(five_nine_plus_rating).to be < five_ten_a_rating
     end
 
     it 'should have a numeric difference of 1 between 5.10d and 5.11a' do
