@@ -19,8 +19,20 @@ describe Climb do
                 be (five_nine_plus_rating - five_nine_rating)
         end
 
+        it 'should rate 5.9+ as less than 5.10a' do
+          five_nine_plus_rating = Climb.get_numeric_rating('5.9+')
+          five_ten_a_rating = Climb.get_numeric_rating('5.10a')
+          expect(five_nine_plus_rating).to be <= five_ten_a_rating
+        end
+
+        it 'should have a numeric difference of 1 between 5.10d and 5.11a' do
+          five_ten_d_rating = Climb.get_numeric_rating('5.10d')
+          five_eleven_a_rating = Climb.get_numeric_rating('5.11a')
+          expect(five_ten_d_rating).to be five_eleven_a_rating - 1
+        end
+
         it 'should rate 5.10[abcd] climbs as fractions of 5.10[-+]' do
-            smallest_rating = Climb.get_numeric_rating("5.10a")
+            smallest_rating = Climb.get_numeric_rating('5.10a')
 
             # Essentially, the numeric values are irrelevant, as long as the
             # distribution is normalized.

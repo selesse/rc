@@ -44,6 +44,8 @@ class Climb
 
       climbing_modifier = 0
 
+      high_level_climb = climbing_rating.to_i >= 10
+
       if postfix_rating.to_s == 'a'
           climbing_modifier = -3
       elsif postfix_rating.to_s == '-'
@@ -58,9 +60,15 @@ class Climb
           climbing_modifier = 3
       end
 
+      climbing_modifier = climbing_modifier / 2 unless high_level_climb
+
       raise "invalid rock climbing format for #{climb_rating_string}" if climbing_rating.nil?
 
-      ((climbing_rating.to_i * 4) + climbing_modifier).to_i
+      if high_level_climb
+        return ((climbing_rating.to_i * 7) + climbing_modifier).to_i
+      else
+        return ((climbing_rating.to_i * 4) + climbing_modifier).to_i
+      end
     end
 
     def self.get_string_rating(numeric_rating)
